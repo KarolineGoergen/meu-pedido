@@ -6,6 +6,7 @@ public class ItemDTO {
     
     private int id;
     private int produto;
+    private String nomeProduto;
     private int quantidade;
     private double valor;
     private double subTotal;
@@ -16,6 +17,7 @@ public class ItemDTO {
     public ItemDTO(Item obj) {
         this.id = obj.getId();
         this.produto = obj.getProduto().getId();
+        this.nomeProduto = obj.getProduto().getNome();
         this.quantidade = obj.getQuantidade();
         this.valor = obj.getProduto().getValorUn();
         this.subTotal = obj.getSubTotal();
@@ -59,5 +61,13 @@ public class ItemDTO {
 
     public void setSubTotal(double subTotal) {
         this.subTotal = subTotal;
+    }
+
+    public String getNomeProduto() {
+        return nomeProduto;
+    }
+
+    public void setNomeProduto(String nomeProduto) {
+        this.nomeProduto = nomeProduto;
     }
 }

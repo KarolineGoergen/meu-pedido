@@ -10,13 +10,13 @@ public class Encomenda {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    @Column(nullable=true)
+    @Column(nullable=false)
     private LocalDateTime dataEncomenda;
     @Column(nullable=false)
-    private LocalDateTime dataEntrega;
-    @Column(nullable=false)
-    private String observacao;
+    private String dataEntrega;
     @Column(nullable=true)
+    private String observacao;
+    @Column(nullable=false)
     private double valorTotal;
 
     @OneToMany(mappedBy = "encomenda")
@@ -25,17 +25,17 @@ public class Encomenda {
     @ManyToOne(cascade = CascadeType.PERSIST)
     private Cliente cliente;
 
-    @Column(nullable=false)
+    @Column(nullable=true)
     private String cidade;
-    @Column(nullable=false)
+    @Column(nullable=true)
     private String bairro;
-    @Column(nullable=false)
+    @Column(nullable=true)
     private String logradouro;
-    @Column(nullable=false)
+    @Column(nullable=true)
     private int numero;
     private int status;
 
-    public Encomenda(int id, LocalDateTime dataEncomenda, LocalDateTime dataEntrega, String observacao,
+    public Encomenda(int id, LocalDateTime dataEncomenda, String dataEntrega, String observacao,
             double valorTotal, List<Item> itens, Cliente cliente, String cidade, String bairro, String logradouro,
             int numero, int status) {
         this.id = id;
@@ -77,10 +77,10 @@ public class Encomenda {
     public void setDataEncomenda(LocalDateTime dataEncomenda) {
         this.dataEncomenda = dataEncomenda;
     }
-    public LocalDateTime getDataEntrega() {
+    public String getDataEntrega() {
         return dataEntrega;
     }
-    public void setDataEntrega(LocalDateTime dataEntrega) {
+    public void setDataEntrega(String dataEntrega) {
         this.dataEntrega = dataEntrega;
     }
     public String getObservacao() {

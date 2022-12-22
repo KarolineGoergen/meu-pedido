@@ -12,13 +12,13 @@ public class Produto {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    @Column(nullable=true)
+    @Column(nullable=false)
     private String nome;
-    @Column(nullable=false)
-    private String descricao;
-    @Column(nullable=false)
-    private String unMedida;
     @Column(nullable=true)
+    private String descricao;
+    @Column(nullable=true)
+    private String unMedida;
+    @Column(nullable=false)
     private double valorUn;
     private int status;
 

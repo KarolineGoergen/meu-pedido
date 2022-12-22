@@ -12,25 +12,25 @@ public class Empresa {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    @Column(nullable=true)
-    private String nome;
     @Column(nullable=false)
+    private String nome;
+    @Column(nullable=true)
     private String descricao; 
     @CNPJ
-    @Column(nullable=true)
+    @Column(nullable=false)
     private String cod;
     @Email
-    @Column(nullable=true)
+    @Column(nullable=false)
     private String email;
-    @Column(nullable=true)
+    @Column(nullable=false)
     private String telefone;
-    @Column(nullable=true)
+    @Column(nullable=false)
     private String cidade;
-    @Column(nullable=true)
+    @Column(nullable=false)
     private String bairro;
-    @Column(nullable=true)
+    @Column(nullable=false)
     private String logradouro;
-    @Column(nullable=true)
+    @Column(nullable=false)
     private int numero;
 
     public Empresa() {

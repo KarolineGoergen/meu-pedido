@@ -59,13 +59,15 @@ public class EncomendaService {
         Produto produto = produtoService.findById(itemDTO.getProduto());
         item.setEncomenda(encomenda);
         item.setProduto(produto);
+        item.setNomeProduto(produto.getNome());
         item.setValor(produto.getValorUn());
         item.setSubTotal(produto.getValorUn()*itemDTO.getQuantidade());
-        soma = soma + item.getSubTotal();
+        soma += item.getSubTotal();
         
         itensRepository.save(item);
       }
       encomenda.setValorTotal(soma);
+      soma=0;
       return encomendaRepository.save(encomenda);
 
     }
@@ -73,13 +75,15 @@ public class EncomendaService {
     public Encomenda update(Integer id, @Valid EncomendaDTO obj){
       obj.setId(id);
       Encomenda oldObj = findById(id);
-      oldObj = create(obj);
+      oldObj.setStatus(1);
       return encomendaRepository.save(oldObj);
-
     }
 
-    public void delete(Integer id) {
-      encomendaRepository.deleteById(id);
+    public Encomenda cancelar(Integer id, @Valid EncomendaDTO obj) {
+      obj.setId(id);
+      Encomenda oldObj = findById(id);
+      oldObj.setStatus(2);
+      return encomendaRepository.save(oldObj);
     }
 
 }

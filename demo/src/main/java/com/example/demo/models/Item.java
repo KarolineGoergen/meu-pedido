@@ -12,6 +12,8 @@ public class Item {
     @ManyToOne(cascade = CascadeType.PERSIST)
     private Produto produto;
 
+    private String nomeProduto;
+
     @ManyToOne(cascade = CascadeType.PERSIST)
     private Encomenda encomenda;
 
@@ -26,9 +28,10 @@ public class Item {
     public Item() {
     }
 
-    public Item(int id, Produto produto, int quantidade, double valor, double subTotal) {
+    public Item(int id, Produto produto, String nomeProduto, int quantidade, double valor, double subTotal) {
         this.id = id;
         this.produto = produto;
+        this.nomeProduto = nomeProduto;
         this.quantidade = quantidade;
         this.valor = valor;
         this.subTotal = subTotal;
@@ -72,5 +75,13 @@ public class Item {
 
     public void setSubTotal(double subTotal) {
         this.subTotal = subTotal;
+    }
+
+    public String getNomeProduto() {
+        return nomeProduto;
+    }
+
+    public void setNomeProduto(String string) {
+        this.nomeProduto = string;
     }
 }

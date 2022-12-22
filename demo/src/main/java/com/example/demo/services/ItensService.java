@@ -7,6 +7,7 @@ import com.example.demo.models.Item;
 import com.example.demo.repositories.ItensRepository;
 import com.example.demo.services.exceptions.ObjectnotFoundException;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -21,5 +22,9 @@ public class ItensService {
 	}
 
     public void save(Item item) {
+    }
+
+    public List<Item> findAll() {
+        return repository.findAll();
     }
 }

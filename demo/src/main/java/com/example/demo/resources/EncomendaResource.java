@@ -8,7 +8,7 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -22,7 +22,7 @@ import com.example.demo.models.dtos.EncomendaDTO;
 import com.example.demo.services.EncomendaService;
 import org.springframework.web.bind.annotation.RequestBody;
 
-
+@CrossOrigin(origins = "http://localhost:4200/")
 @RestController
 @RequestMapping(value = "/encomendas")
 public class EncomendaResource {
@@ -31,9 +31,9 @@ public class EncomendaResource {
     private EncomendaService service;
 
 	@GetMapping(value = "/{id}")
-	public ResponseEntity<Encomenda> findById(@PathVariable Integer id){
+	public ResponseEntity<EncomendaDTO> findById(@PathVariable Integer id){
 		Encomenda obj = service.findById(id);
-		return ResponseEntity.ok().body(obj);
+		return ResponseEntity.ok().body(new EncomendaDTO(obj));
 	}
 
 	@GetMapping
@@ -56,10 +56,10 @@ public class EncomendaResource {
         return ResponseEntity.ok().body(new EncomendaDTO(obj));
     }
 	
-	@DeleteMapping(value = "/{id}")
-    public ResponseEntity<EncomendaDTO> delete(@PathVariable Integer id){
-        service.delete(id);
-        return ResponseEntity.noContent().build();
+	@PutMapping(value = "/cancelar/{id}")
+    public ResponseEntity<EncomendaDTO> cancelar(@PathVariable Integer id, @Valid @RequestBody EncomendaDTO objDTO){
+        Encomenda obj = service.cancelar(id, objDTO);
+        return ResponseEntity.ok().body(new EncomendaDTO(obj));
     }
 	
 	

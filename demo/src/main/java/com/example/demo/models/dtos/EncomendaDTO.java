@@ -15,14 +15,14 @@ public class EncomendaDTO {
     private int id;
     @JsonFormat(pattern = "dd/MM/yyyy HH:mm:ss") 
     private LocalDateTime dataEncomenda = LocalDateTime.now();
-    @JsonFormat(pattern = "dd/MM/yyyy HH:mm:ss")
-    private LocalDateTime dataEntrega;
+    private String dataEntrega;
     private String observacao; 
     private double valorTotal;
     @NotNull(message = "Selecione pelo menos um produto!")
     private List<ItemDTO> itens;
     @NotNull(message = "O campo Cliente é obrigatório!")
     private int cliente;
+    private String nomeCliente;
     private String cidade;   
     private String bairro;
     private String logradouro;
@@ -43,6 +43,7 @@ public class EncomendaDTO {
             this.itens.add(new ItemDTO(item));
         }
         this.cliente = obj.getCliente().getId();
+        this.nomeCliente = obj.getCliente().getNome();
         this.cidade = obj.getCidade();
         this.bairro = obj.getBairro();
         this.logradouro = obj.getLogradouro();
@@ -57,10 +58,10 @@ public class EncomendaDTO {
         this.id = id;
     }
  
-    public LocalDateTime getDataEntrega() {
+    public String getDataEntrega() {
         return dataEntrega;
     }
-    public void setDataEntrega(LocalDateTime dataEntrega) {
+    public void setDataEntrega(String dataEntrega) {
         this.dataEntrega = dataEntrega;
     }
     public String getObservacao() {
@@ -130,6 +131,14 @@ public class EncomendaDTO {
 
     public void setDataEncomenda(LocalDateTime dataEncomenda) {
         this.dataEncomenda = dataEncomenda;
+    }
+
+    public String getNomeCliente() {
+        return nomeCliente;
+    }
+
+    public void setNomeCliente(String nomeCliente) {
+        this.nomeCliente = nomeCliente;
     }
 
 }

@@ -14,17 +14,17 @@ public class Cliente {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    @Column(nullable=true)
+    @Column(nullable=false)
     private String nome;
     @Email
-    @Column(nullable=true)
+    @Column(nullable=false)
     private String email;
     @CPF
-    @Column(unique=true, nullable=true)
+    @Column(unique=true, nullable=false)
     private String cpf;
-    @Column(nullable=true)
+    @Column(nullable=false)
     private String telefone;
-    @Column(nullable=true)
+    @Column(nullable=false)
     private int status;
     
 
